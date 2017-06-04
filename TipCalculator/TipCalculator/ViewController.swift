@@ -41,16 +41,18 @@ class ViewController: UIViewController {
         billField.becomeFirstResponder()
         
         updateFaces()
+        updateLocale()
         updateDefaultTipValues()
         updateToPreviousTotal()
-
-    }
+            }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         print("View will appear")
+        updateLocale()
         updateDefaultTipValues()
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -70,6 +72,10 @@ class ViewController: UIViewController {
         } else {
             print("TODO: handle invalid value")
         }
+        
+        var userPreferences = UserPreferences()
+        userPreferences.preferredLocale = localeControl.selectedSegmentIndex
+        userPreferences.save()
     }
     
     func updateTip(_ billAmount: Double) {
@@ -103,6 +109,14 @@ class ViewController: UIViewController {
             tipControl.setTitle(String(defaultTipAmount) + "%", forSegmentAt: index)
         }
     }
+    
+    func updateLocale() {
+        let userPreferences = UserPreferences()
+        localeControl.selectedSegmentIndex = userPreferences.preferredLocale
+        
+        localeControl.sendActions(for: UIControlEvents.valueChanged)
+    }
+    
     
     func updateToPreviousTotal() {
         let userPreferences = UserPreferences()

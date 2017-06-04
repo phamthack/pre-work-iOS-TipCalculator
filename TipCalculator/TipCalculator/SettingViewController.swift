@@ -12,14 +12,9 @@ class SettingViewController: UITableViewController {
     @IBOutlet weak var lowField: UITextField!
     @IBOutlet weak var middleField: UITextField!
     @IBOutlet weak var highField: UITextField!
+    @IBOutlet weak var localeControl: UISegmentedControl!
     
     var userPreferences: UserPreferences!
-    
-    let availableLocales = [
-        "en_US": Locale(identifier: "en_US"),
-        "en_UK": Locale(identifier: "en_UK"),
-        "vi_VN": Locale(identifier: "vi_VN")
-    ]
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -43,6 +38,12 @@ class SettingViewController: UITableViewController {
         }
     }
     
+    @IBAction func onChangeLocale(_ sender: Any) {
+        userPreferences.preferredLocale = localeControl.selectedSegmentIndex
+        
+        userPreferences.save()
+    }
+
     func submittedTipValue(_ text: String?) -> Int? {
         return text.flatMap { Int($0) }
     }
@@ -51,10 +52,12 @@ class SettingViewController: UITableViewController {
         super.viewDidLoad()
         
         updateTipFields()
+        updateLocale()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         updateTipFields()
+        updateLocale()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -75,11 +78,9 @@ class SettingViewController: UITableViewController {
         highField.text   = String(userPreferences.highTipPercentage)
     }
     
-    // MARK: - UITableViewDelegate
-    override func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        print("Selected row at \(indexPath)")
+    func updateLocale() {
+        localeControl.selectedSegmentIndex = userPreferences.preferredLocale
     }
-    
     
     // MARK: - Navigation
     

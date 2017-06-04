@@ -49,12 +49,11 @@ struct UserPreferences {
         }
     }
     
-    var preferredLocale: String {
+    var preferredLocale: Int {
         get {
             return defaults.value(
                 forKey: LocaleKey
-                ) as? String ?? Locale.current.identifier
-        }
+                ) as? Int ?? 0        }
         
         set {
             defaults.set(newValue, forKey: LocaleKey)
