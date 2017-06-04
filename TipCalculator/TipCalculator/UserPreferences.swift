@@ -14,6 +14,9 @@ struct UserPreferences {
     let LocaleKey = "preferred_locale"
     let PreviousBill = "previous_bill"
     let PreviousBillDate = "previous_bill_date"
+    let DefaultColor = "default_color"
+    let DefaultRow = "default_row"
+    
     static let DefaultBill = 0.0
     
     enum TipPercentageKey: String {
@@ -57,6 +60,27 @@ struct UserPreferences {
         
         set {
             defaults.set(newValue, forKey: LocaleKey)
+        }
+    }
+    
+    var defaultRow: Int {
+        get {
+            return defaults.value(
+                forKey: DefaultRow
+                ) as? Int ?? 0        }
+        
+        set {
+            defaults.set(newValue, forKey: DefaultRow)
+        }
+    }
+    
+    var defaultColor: String {
+        get {
+            return defaults.value(forKey: DefaultColor) as? String ?? "Orange"
+        }
+        
+        set {
+            defaults.set(newValue, forKey: DefaultColor)
         }
     }
     

@@ -144,6 +144,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="billField" destination="xRK-5f-cJI" id="AQn-6P-itQ"/>
+                        <outlet property="facesView" destination="CKj-f6-8yu" id="517-19-zWt"/>
                         <outlet property="leftFace" destination="hHV-SD-6lO" id="Rah-yz-LW3"/>
                         <outlet property="localeControl" destination="mTU-IK-ouL" id="FbO-kd-3Xb"/>
                         <outlet property="middleFace" destination="mws-dK-mfO" id="Jcf-cq-qGQ"/>
@@ -294,6 +295,28 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Theme" id="puO-eO-2M7" userLabel="Theme">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="139" id="NiM-LW-7Mn">
+                                        <rect key="frame" x="0.0" y="344" width="375" height="139"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NiM-LW-7Mn" id="oC0-lb-zHx">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="138.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hjK-Mw-cdM">
+                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="139"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="s0u-FH-dzT" id="y9g-8b-Vbn"/>
+                                                        <outlet property="delegate" destination="s0u-FH-dzT" id="MR9-3A-2pd"/>
+                                                    </connections>
+                                                </pickerView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="s0u-FH-dzT" id="off-6M-APV"/>
@@ -302,6 +325,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="Wtd-bh-dIk"/>
                     <connections>
+                        <outlet property="colorPicker" destination="hjK-Mw-cdM" id="6ek-AP-98h"/>
                         <outlet property="highField" destination="LpG-Qd-LUc" id="j7Q-hE-D2N"/>
                         <outlet property="localeControl" destination="xtB-JT-PwJ" id="BwR-kQ-jY8"/>
                         <outlet property="lowField" destination="f4G-Vc-ZXh" id="qsV-Pz-ZRW"/>

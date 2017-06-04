@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var billField: UITextField!
     @IBOutlet weak var tipLabel: UILabel!
     @IBOutlet weak var totalLabel: UILabel!
+    @IBOutlet weak var facesView: UIView!
 
     @IBOutlet weak var tipControl: UISegmentedControl!
     @IBOutlet weak var localeControl: UISegmentedControl!
@@ -52,6 +53,8 @@ class ViewController: UIViewController {
         print("View will appear")
         updateLocale()
         updateDefaultTipValues()
+        
+        updateTheme()
         
     }
 
@@ -117,6 +120,32 @@ class ViewController: UIViewController {
         localeControl.sendActions(for: UIControlEvents.valueChanged)
     }
     
+    func updateTheme() {
+        let userPreferences = UserPreferences()
+        
+        let newColor = userPreferences.defaultColor
+        changeColorTheme(newColor: newColor)
+    }
+    
+    func changeColorTheme(newColor: String) {
+        
+        //change background and tint colors
+        if (newColor == "Orange") {
+            self.view.backgroundColor = UIColor(hexString: "#ffb366")
+            facesView.backgroundColor = UIColor(hexString: "#ffb366")
+            self.view.tintColor = UIColor.white
+        }
+        else if (newColor == "Light") {
+            self.view.backgroundColor = UIColor.white
+            facesView.backgroundColor = UIColor.white
+            self.view.tintColor = UIColor.blue
+        }
+        else if (newColor == "Blue Light") {
+            self.view.backgroundColor = UIColor(hexString: "#bbffff")
+            facesView.backgroundColor = UIColor(hexString: "#bbffff")
+            self.view.tintColor = UIColor(hexString: "#9f79ee")
+        }
+    }
     
     func updateToPreviousTotal() {
         let userPreferences = UserPreferences()
